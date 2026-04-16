@@ -3,117 +3,518 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>MP Suthar | ProDeveloping – Premium Web & Tools</title>
+  <title>MP Suthar | Pro Developing</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', 'Plus Jakarta Sans', sans-serif; background: linear-gradient(135deg, #0a0f2a 0%, #0b1a33 100%); color: #eef2ff; overflow-x: hidden; scroll-behavior: smooth; }
-    #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.8; }
-    .wrapper { position: relative; z-index: 2; background: radial-gradient(circle at 20% 30%, rgba(13, 27, 55, 0.6), rgba(8, 18, 38, 0.75)); backdrop-filter: blur(2px); }
-    .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(15, 30, 55, 0.75); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0, 255, 200, 0.3); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); z-index: 100; padding: 1rem 2rem; }
-    .nav-container { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-    .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #2dd4bf, #818cf8, #c084fc); -webkit-background-clip: text; background-clip: text; color: transparent; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; }
-    .logo:hover { opacity: 0.9; transform: scale(1.02); text-shadow: 0 0 8px #2dd4bf; }
-    .logo-badge { font-size: 0.7rem; background: #2dd4bf20; backdrop-filter: blur(4px); padding: 2px 8px; border-radius: 40px; color: #2dd4bf; font-weight: 500; border: 0.5px solid #2dd4bf80; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links li a { color: #e0e7ff; text-decoration: none; font-weight: 500; transition: 0.2s; position: relative; }
-    .nav-links li a:hover { color: #2dd4bf; }
-    .nav-links li a::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0%; height: 2px; background: linear-gradient(90deg, #2dd4bf, #a855f7); transition: 0.3s; }
-    .nav-links li a:hover::after { width: 100%; }
-    .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: #cbd5e6; }
-    section { padding: 100px 5% 80px; max-width: 1300px; margin: 0 auto; }
-    .section-title { font-size: 2.6rem; font-weight: 800; margin-bottom: 3rem; text-align: center; background: linear-gradient(135deg, #ffffff, #94a3f8, #2dd4bf); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; width: 100%; }
-    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2.5rem; padding-top: 100px; }
-    .hero-content { flex: 1; min-width: 280px; }
-    .hero-content .greeting { font-size: 1.3rem; letter-spacing: 1px; color: #2dd4bf; margin-bottom: 0.5rem; font-weight: 500; }
-    .hero-content h1 { font-size: 4rem; font-weight: 800; line-height: 1.2; margin: 0.5rem 0; }
-    .hero-subtitle { font-size: 1.5rem; font-weight: 600; margin-top: 0.5rem; color: #c4b5fd; }
-    .hero-buttons { display: flex; gap: 1.2rem; margin-top: 2rem; flex-wrap: wrap; }
-    .btn { padding: 0.9rem 2rem; border-radius: 60px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; border: none; }
-    .btn-primary { background: linear-gradient(95deg, #0fbaa8, #6366f1); color: white; box-shadow: 0 10px 20px -5px rgba(15, 186, 168, 0.4); }
-    .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -8px rgba(15, 186, 168, 0.6); }
-    .btn-outline { background: rgba(45, 212, 191, 0.12); border: 1.5px solid #2dd4bf; color: #2dd4bf; }
-    .btn-outline:hover { background: rgba(45, 212, 191, 0.25); transform: translateY(-4px); border-color: #a78bfa; }
-    .hero-image { flex: 0.8; display: flex; justify-content: center; filter: drop-shadow(0 20px 30px rgba(0, 255, 200, 0.2)); }
-    /* Improved image styling: higher resolution and better scaling */
-    .hero-image img {
-      width: 300px; 
-      height: 300px; 
-      object-fit: cover; 
-      border-radius: 40% 60% 35% 65% / 70% 40% 60% 30%; 
-      border: 3px solid rgba(45, 212, 191, 0.6); 
-      box-shadow: 0 20px 35px rgba(99, 102, 241, 0.3); 
-      transition: all 0.5s ease;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .card-3d { background: linear-gradient(125deg, rgba(25, 45, 75, 0.65), rgba(15, 30, 60, 0.7)); backdrop-filter: blur(12px); border-radius: 32px; padding: 1.8rem; transition: 0.3s; border: 1px solid rgba(45, 212, 191, 0.3); box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3); }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.8rem; margin-top: 2rem; }
-    .skill-item { text-align: center; padding: 1.4rem; background: rgba(20, 40, 70, 0.6); border-radius: 24px; backdrop-filter: blur(5px); border-bottom: 2px solid #2dd4bf; }
-    .skill-item i { font-size: 2.8rem; color: #2dd4bf; margin-bottom: 0.7rem; }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-    .project-card { background: rgba(18, 35, 60, 0.7); backdrop-filter: blur(8px); border-radius: 32px; overflow: hidden; transition: all 0.35s; cursor: pointer; }
-    .project-card:hover { transform: translateY(-12px); box-shadow: 0 30px 40px -15px rgba(0, 200, 200, 0.35); border: 1px solid rgba(45,212,191,0.6); }
-    .project-img { height: 190px; background: linear-gradient(135deg, #1f3b6c, #141f44); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; color: #2dd4bf; }
-    .project-info { padding: 1.5rem; }
-    .project-info h3 { font-size: 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
-    .skill-tag { background: rgba(45,212,191,0.2); padding: 0.2rem 0.9rem; border-radius: 40px; font-size: 0.75rem; display: inline-block; margin-right: 0.5rem; color: #99f6e4; font-weight: 500; }
-    .click-badge { font-size: 0.75rem; margin-top: 12px; background: rgba(45,212,191,0.25); padding: 4px 12px; border-radius: 40px; display: inline-block; }
-    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.8rem; margin-bottom: 2.5rem; }
-    /* Updated contact-card styling: fully centered flex column */
-    .contact-card { 
-      background: rgba(20, 40, 70, 0.55); 
-      backdrop-filter: blur(8px); 
-      border-radius: 28px; 
-      padding: 1.6rem; 
-      border: 1px solid rgba(99, 102, 241, 0.3); 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
-      text-align: center; 
+
+    :root {
+      --bg-dark: #0a0c1a;
+      --glass-bg: rgba(15, 25, 45, 0.65);
+      --glass-border: rgba(45, 212, 191, 0.4);
+      --neon-cyan: #2dd4bf;
+      --neon-purple: #a855f7;
+      --neon-glow: 0 0 12px rgba(45, 212, 191, 0.6);
+      --card-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.5);
+      --transition-smooth: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    body {
+      font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+      background: #0a0f2a;
+      color: #eef2ff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: auto;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 2;
+      background: radial-gradient(circle at 20% 30%, rgba(13, 27, 55, 0.5), rgba(8, 18, 38, 0.7));
+      backdrop-filter: blur(2px);
+    }
+
+    /* Glass Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 20, 35, 0.8);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #2dd4bf, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-shadow: 0 0 5px rgba(45, 212, 191, 0.4);
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
+      text-shadow: 0 0 12px #2dd4bf;
+    }
+
+    .logo-badge {
+      font-size: 0.7rem;
+      background: rgba(45, 212, 191, 0.2);
+      padding: 2px 10px;
+      border-radius: 40px;
+      color: #2dd4bf;
+      border: 1px solid #2dd4bf80;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      color: #e0e7ff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
       transition: 0.2s;
+      position: relative;
     }
-    .contact-card i { font-size: 2.5rem; margin-bottom: 1rem; color: #2dd4bf; }
-    .message-form-section { background: linear-gradient(125deg, rgba(25, 45, 75, 0.7), rgba(15, 30, 60, 0.8)); backdrop-filter: blur(12px); border-radius: 2rem; padding: 2rem; margin-top: 1rem; border: 1px solid rgba(45,212,191,0.4); }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group input, .form-group textarea { width: 100%; background: rgba(10, 20, 40, 0.7); border: 1px solid #2dd4bf60; padding: 0.9rem 1.2rem; border-radius: 2rem; color: white; font-size: 1rem; outline: none; transition: 0.2s; }
-    .form-group input:focus, .form-group textarea:focus { border-color: #2dd4bf; box-shadow: 0 0 8px #2dd4bf80; }
-    .form-group textarea { resize: vertical; min-height: 100px; }
-    .send-btn { background: linear-gradient(95deg, #0fbaa8, #6366f1); border: none; color: white; font-weight: bold; padding: 0.8rem 2rem; border-radius: 3rem; cursor: pointer; font-size: 1rem; transition: 0.2s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .send-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-    .send-btn .spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top: 2px solid white; border-radius: 50%; animation: spin 0.8s linear infinite; display: inline-block; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .social-icons { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
-    .social-icons a { background: rgba(45, 212, 191, 0.15); width: 52px; height: 52px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.8rem; transition: 0.2s; color: #e2e8f0; text-decoration: none; }
-    .social-icons a:hover { background: #2dd4bf; color: #0a0f2a; transform: translateY(-5px); }
-    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(45, 212, 191, 0.3); background: rgba(5, 15, 30, 0.6); }
-    
-    /* NEW COLOR for footer link: vibrant golden-yellow (#FFD966) with clean hover */
-    .design-credit a {
-      color: #FFD966;
-      background: none;
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0%;
+      height: 2.5px;
+      background: linear-gradient(90deg, #2dd4bf, #a855f7);
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #2dd4bf;
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #2dd4bf;
+    }
+
+    section {
+      padding: 100px 5% 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff, #94a3f8, #2dd4bf);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .glass-card {
+      background: linear-gradient(125deg, rgba(25, 45, 75, 0.65), rgba(15, 30, 60, 0.7));
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 2rem;
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      box-shadow: var(--card-shadow);
+      transition: var(--transition-smooth);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      padding-top: 110px;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .greeting {
+      font-size: 1.3rem;
+      color: #2dd4bf;
+      font-weight: 500;
+    }
+
+    .hero-content h1 {
+      font-size: 4.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFF, #2dd4bf);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .typing-text {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin: 0.8rem 0;
+      min-height: 70px;
+      color: #c4b5fd;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
       font-weight: 700;
-      transition: 0.2s ease;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(95deg, #0fbaa8, #6366f1);
+      color: white;
+      box-shadow: 0 5px 15px rgba(15, 186, 168, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgba(15, 186, 168, 0.6);
+    }
+
+    .btn-outline {
+      background: rgba(45, 212, 191, 0.12);
+      border: 1.5px solid #2dd4bf;
+      color: #2dd4bf;
+    }
+
+    .btn-outline:hover {
+      background: rgba(45, 212, 191, 0.3);
+      transform: translateY(-4px);
+      border-color: #a78bfa;
+    }
+
+    /* Hero image centering */
+   .hero-image img{
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 50%;
+  border: 4px solid #2dd4bf;
+  box-shadow: 0 20px 40px rgba(45,212,191,0.5);
+  transition: 0.4s ease;
+}
+
+.hero-image img:hover{
+  transform: scale(1.05);
+  box-shadow: 0 30px 60px rgba(45,212,191,0.7);
+}
+    .hero-image img {
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 40% 60% 35% 65% / 70% 40% 60% 30%;
+      border: 3px solid #2dd4bf;
+      box-shadow: 0 20px 35px rgba(0, 255, 200, 0.3);
+      transition: transform 0.5s ease, box-shadow 0.4s;
+      cursor: pointer;
+    }
+
+    .hero-image img:hover {
+      transform: rotateY(10deg) rotateX(5deg) scale(1.03);
+      box-shadow: 0 30px 45px rgba(45, 212, 191, 0.5);
+    }
+
+    /* Skills progress */
+    .skills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .skill-progress {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 1rem;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-bg {
+      background: #1e2a4a;
+      border-radius: 30px;
+      overflow: hidden;
+      height: 12px;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #2dd4bf, #a855f7);
+      border-radius: 30px;
+      transition: width 1.2s ease;
+    }
+
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      text-align: center;
+      transition: var(--transition-smooth);
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px);
+      border-color: #2dd4bf;
+      box-shadow: 0 0 25px rgba(45, 212, 191, 0.4);
+    }
+
+    /* Stats counter */
+    .stats-grid {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 32px;
+      min-width: 160px;
+      backdrop-filter: blur(4px);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #2dd4bf;
+    }
+
+    /* Projects (New: Sarvtra Electrical) */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: rgba(18, 35, 60, 0.8);
+      border-radius: 32px;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      border: 1px solid #2dd4bf;
+      box-shadow: 0 0 25px rgba(45,212,191,0.4);
+    }
+    .project-img {
+      height: 180px;
+      background: linear-gradient(135deg, #1f3b6c, #141f44);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: #2dd4bf;
+    }
+    .project-info {
+      padding: 1.5rem;
+    }
+    .project-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #2dd4bf;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid #2dd4bf;
+    }
+
+    /* Future Vision */
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .future-card {
+      text-align: center;
+    }
+
+    /* Contact Form */
+    .form-group {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      background: rgba(10, 20, 40, 0.7);
+      border: 1px solid #2dd4bf60;
+      padding: 1rem 1.2rem;
+      border-radius: 2rem;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .form-group label {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      transition: 0.2s;
+      pointer-events: none;
+    }
+
+    .form-group textarea+label {
+      top: 1.2rem;
+      transform: none;
+    }
+
+    .form-group input:focus+label, .form-group input:not(:placeholder-shown)+label,
+    .form-group textarea:focus+label, .form-group textarea:not(:placeholder-shown)+label {
+      top: -10px;
+      left: 15px;
+      font-size: 0.75rem;
+      background: #0f172a;
+      padding: 0 6px;
+      color: #2dd4bf;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 2px solid transparent;
+      border-image: linear-gradient(90deg, #2dd4bf, #a855f7) 1;
+      background: rgba(5, 15, 30, 0.7);
+    }
+    
+    /* Social Icons - Centered */
+    .social-icons {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .social-icons a {
+      background: rgba(45, 212, 191, 0.15);
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 0 10px;
+      transition: 0.3s;
+      color: white;
       text-decoration: none;
     }
-    .design-credit a:hover {
-      color: #FFB347;
-      text-shadow: none;
+    .social-icons a:hover {
+      background: #2dd4bf;
+      transform: translateY(-6px);
+      color: #0a0f2a;
     }
-    
-    section[id] { scroll-margin-top: 85px; }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 900px) {
-      .nav-links { position: fixed; top: 72px; left: -100%; flex-direction: column; background: rgba(8, 20, 40, 0.96); backdrop-filter: blur(20px); width: 70%; height: calc(100vh - 72px); padding: 2rem; transition: 0.3s; border-right: 1px solid #2dd4bf; gap: 2rem; }
+      .nav-links {
+        position: fixed;
+        top: 72px;
+        left: -100%;
+        flex-direction: column;
+        background: rgba(8, 20, 40, 0.98);
+        backdrop-filter: blur(24px);
+        width: 75%;
+        height: calc(100vh - 72px);
+        padding: 2rem;
+        transition: 0.4s;
+        border-right: 2px solid #2dd4bf;
+      }
       .nav-links.active { left: 0; }
       .menu-toggle { display: block; }
       .hero-content h1 { font-size: 2.8rem; }
-      .hero-image img { width: 220px; height: 220px; }
+      .hero-image img { width: 240px; height: 240px; }
+      .hero { flex-direction: column-reverse; text-align: center; }
+      .hero-buttons { justify-content: center; }
     }
-    @media (max-width: 680px) { .hero { flex-direction: column-reverse; text-align: center; } .hero-buttons { justify-content: center; } }
-    .fade-up { opacity: 0; transform: translateY(35px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -121,221 +522,167 @@
 <div class="wrapper">
   <nav class="navbar">
     <div class="nav-container">
-      <div class="logo" onclick="window.open('https://www.prodeveloping.online', '_blank')">
-        MP Suthar <span class="logo-badge"><i class="fas fa-star-of-life"></i> First</span>
-      </div>
+      <div class="logo" onclick="window.open('https://www.prodeveloping.online', '_blank')">MP Suthar <span class="logo-badge"><i class="fas fa-crown"></i> Pro</span></div>
       <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li>
+        <li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#services">Services</a></li><li><a href="#future">Future</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content fade-up">
-      <div class="greeting"><i class="fas fa-code"></i> I am</div>
+      <div class="greeting"><i class="fas fa-code"></i> Hi, I'm</div>
       <h1>MP Suthar</h1>
-      <div class="hero-subtitle">Professional Web Development</div>
-      <p style="margin-top: 1rem; font-size: 1.1rem;">CEO & Founder of <strong style="color:#2dd4bf; cursor:pointer;" onclick="window.open('https://www.prodeveloping.online', '_blank')">Pro Developing</strong> | Modern web solutions</p>
+      <div class="typing-text" id="typingEffect"></div>
+      <p style="margin-top: 1rem;">CEO & Founder of <strong style="color:#2dd4bf;">ProDeveloping</strong> | Futuristic Web Solutions</p>
       <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> View Projects</a>
-        <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Me</a>
-        <a href="https://www.prodeveloping.online" target="_blank" class="btn btn-outline" style="border-color:#a78bfa; color:#c4b5fd;"><i class="fas fa-external-link-alt"></i> ProDeveloping.online</a>
+        <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Explore Work</a>
+        <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Hire Me</a>
+        <a href="https://www.prodeveloping.online" target="_blank" class="btn btn-outline"><i class="fas fa-globe"></i> ProDeveloping.online</a>
       </div>
     </div>
     <div class="hero-image fade-up">
-      <!-- Higher resolution image (1200x1200 crop) for sharper look, maintaining clarity -->
-      <img src="mp.jpg" alt="MP Suthar" onerror="this.src='https://ui-avatars.com/api/?background=2dd4bf&color=fff&name=MP+Suthar&size=280&bold=true&length=2'">
+      <img src="m1.jpg" alt="MP Suthar" onerror="this.src='https://ui-avatars.com/api/?background=2dd4bf&color=fff&name=MP+Suthar&size=300&bold=true'">
     </div>
   </section>
 
-  <section id="about">
-    <h2 class="section-title fade-up">About Me</h2>
-    <div class="card-3d fade-up"><p style="font-size:1.2rem;">I am <strong>MP Suthar</strong>, web developer and <strong>CEO & Founder of ProDeveloping</strong>. I build modern static/dynamic websites with <strong>HTML, CSS, JavaScript, PHP</strong>. 2+ years experience.</p>
-    <div style="margin-top:1.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;"><span><i class="fas fa-map-marker-alt"></i> Sanaviya Vav - Tharad, Gujarat</span><span><i class="fas fa-phone"></i> 7046854698</span><span onclick="window.open('https://www.prodeveloping.online', '_blank')" style="color:#2dd4bf; cursor:pointer;"><i class="fas fa-external-link-alt"></i> prodeveloping.online</span></div></div>
+  <!-- About -->
+  <section id="about"><h2 class="section-title fade-up">About Me</h2>
+    <div class="glass-card fade-up"><p style="font-size:1.2rem;">I am <strong>MP Suthar</strong>, web developer and <strong>CEO & Founder of ProDeveloping</strong>. I build modern static/dynamic websites with <strong>HTML, CSS, JavaScript, PHP</strong>. 2+ years experience delivering futuristic digital experiences.</p>
+    <div style="margin-top:1.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;"><span><i class="fas fa-map-marker-alt"></i> Sanaviya Vav - Tharad, Gujarat</span><span><i class="fas fa-phone"></i> 7046854698</span><span><i class="fas fa-rocket"></i> prodeveloping.online</span></div></div>
   </section>
 
-  <section id="skills"><h2 class="section-title fade-up">My Skills</h2><div class="skills-grid"><div class="skill-item"><i class="fab fa-html5"></i><span>HTML5</span></div><div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div><div class="skill-item"><i class="fab fa-js"></i><span>JavaScript</span></div><div class="skill-item"><i class="fab fa-php"></i><span>PHP</span></div></div></section>
+  <!-- Skills -->
+  <section id="skills"><h2 class="section-title fade-up">Tech Arsenal</h2>
+    <div class="skills-container glass-card">
+      <div class="skill-progress"><div class="skill-info"><span><i class="fab fa-html5"></i> HTML5</span><span>95%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="95"></div></div></div>
+      <div class="skill-progress"><div class="skill-info"><span><i class="fab fa-css3-alt"></i> CSS3</span><span>90%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="90"></div></div></div>
+      <div class="skill-progress"><div class="skill-info"><span><i class="fab fa-js"></i> JavaScript</span><span>85%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="85"></div></div></div>
+      <div class="skill-progress"><div class="skill-info"><span><i class="fab fa-php"></i> PHP</span><span>80%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="80"></div></div></div>
+    </div>
+  </section>
 
-  <section id="experience"><h2 class="section-title fade-up">Experience</h2><div class="card-3d" style="border-left:5px solid #2dd4bf;"><h3><i class="fas fa-crown"></i> CEO & Founder at ProDeveloping</h3><p><i class="far fa-calendar-alt"></i> 2024 – Present · Full-time</p><p>Leading ProDeveloping, delivering premium web solutions. Built 20+ projects.</p><div style="margin-top:1.2rem;"><a href="https://www.prodeveloping.online" target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(95deg,#0fbaa8,#6366f1); padding:8px 18px; border-radius:40px; color:white; text-decoration:none;"><i class="fas fa-globe"></i> Visit ProDeveloping</a></div></div></section>
+  <!-- Services -->
+  <section id="services"><h2 class="section-title fade-up">Premium Services</h2>
+    <div class="services-grid">
+      <div class="glass-card service-card"><i class="fas fa-code" style="font-size: 3rem; color:#2dd4bf;"></i><h3>Web Development</h3><p>Modern responsive websites & web apps</p></div>
+      <div class="glass-card service-card"><i class="fas fa-paint-brush" style="font-size: 3rem; color:#a855f7;"></i><h3>UI/UX Design</h3><p>Glassmorphism, futuristic interfaces</p></div>
+      <div class="glass-card service-card"><i class="fas fa-chart-line" style="font-size: 3rem; color:#2dd4bf;"></i><h3>SEO Optimization</h3><p>Lightning speed & performance</p></div>
+      <div class="glass-card service-card"><i class="fas fa-cogs" style="font-size: 3rem; color:#a855f7;"></i><h3>Custom Tools</h3><p>Interactive 3D & advanced JS tools</p></div>
+    </div>
+  </section>
 
-  <section id="projects">
-    <h2 class="section-title fade-up">Premium & Custom Solutions</h2>
+  <!-- Stats -->
+  <section id="stats"><h2 class="section-title fade-up">Milestones</h2><div class="stats-grid"><div class="stat-item"><div class="stat-number" data-target="28">0</div><p>Projects Done</p></div><div class="stat-item"><div class="stat-number" data-target="18">0</div><p>Happy Clients</p></div><div class="stat-item"><div class="stat-number" data-target="3">0</div><p>Years Exp</p></div><div class="stat-item"><div class="stat-number" data-target="45">0</div><p>Tools Used</p></div></div></section>
+
+  <!-- Projects Section (Sarvtra Electrical) -->
+  <section id="projects"><h2 class="section-title fade-up">Me Maneger</h2>
     <div class="projects-grid">
-      <div class="project-card" id="premiumCard" data-link="https://prodeveloping.online/proweb.html">
-        <div class="project-img"><i class="fas fa-chart-line fa-4x"></i></div><div class="project-info"><h3><i class="fas fa-briefcase"></i> Premium Web Work</h3><p>Modern responsive business website using HTML, CSS, JavaScript. Fully optimized, interactive dashboard.</p><div><span class="skill-tag">HTML5</span> <span class="skill-tag">CSS3</span> <span class="skill-tag">JavaScript</span></div><div class="click-badge"><i class="fas fa-external-link-alt"></i> Click to open link</div></div>
+      <div class="project-card" onclick="window.open('https://www.sarvtraelectricalpvtltd.in', '_blank')">
+        <div class="project-img"><i class="fas fa-bolt fa-4x"></i></div>
+        <div class="project-info">
+          <h3>Sarvtra Electrical PVT LTD</h3>
+          <p>Complete electrical solutions provider – modern website with service catalog, client portal, and industrial design.</p>
+          <a href="https://www.sarvtraelectricalpvtltd.in" target="_blank" class="project-link">www.sarvtraelectricalpvtltd.in <i class="fas fa-external-link-alt"></i></a>
+        </div>
       </div>
-      <div class="project-card" id="customCard" data-link="https://prodeveloping.online/cwork.html">
-        <div class="project-img"><i class="fas fa-user-tie fa-4x"></i></div><div class="project-info"><h3><i class="fas fa-portrait"></i> Custom Tools Work</h3><p>Glassmorphic portfolio, 3D interactions, fully responsive layout, smooth animations.</p><div><span class="skill-tag">UI/UX</span> <span class="skill-tag">Responsive</span> <span class="skill-tag">Three.js</span></div><div class="click-badge"><i class="fas fa-external-link-alt"></i> Click to open custom tools</div></div>
+      <div class="project-card" onclick="window.open('https://www.sarvtraelectricalpvtltd.in', '_blank')">
+        <div class="project-img"><i class="fas fa-solar-panel fa-4x"></i></div>
+        <div class="project-info">
+          <h3>Sarvtra Solar Solutions</h3>
+          <p>Renewable energy division – solar panel installations, energy audit, and green tech consulting website.</p>
+          <a href="https://www.sarvtraelectricalpvtltd.in" target="_blank" class="project-link">Visit Solar Division <i class="fas fa-external-link-alt"></i></a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2 class="section-title fade-up">Let's Connect</h2>
-    <div class="contact-grid">
-      <!-- Call card - using straight phone icon (fa-phone) -->
-      <div class="contact-card">
-        <i class="fas fa-phone" style="font-size: 2.6rem;"></i>
-        <h4>Call</h4>
-        <a href="tel:7046854698" style="color:#cbd5e6;">7046854698</a>
-      </div>
-      <!-- WhatsApp card -->
-      <div class="contact-card">
-        <i class="fab fa-whatsapp"></i>
-        <h4>WhatsApp</h4>
-        <a href="https://wa.me/917046854698" target="_blank" style="color:#cbd5e6;">7046854698</a>
-      </div>
-      <!-- Email card -->
-      <div class="contact-card">
-        <i class="fas fa-envelope"></i>
-        <h4>Email</h4>
-        <a href="mailto:mpsuthar099@gmail.com" style="color:#cbd5e6;">mpsuthar099@gmail.com</a>
-      </div>
-      <!-- Website card -->
-      <div class="contact-card">
-        <i class="fas fa-globe"></i>
-        <h4>Website</h4>
-        <a href="https://www.prodeveloping.online" target="_blank" style="color:#2dd4bf;">www.prodeveloping.online</a>
-      </div>
-      <!-- Location card -->
-      <div class="contact-card">
-        <i class="fas fa-map-pin"></i>
-        <h4>Location</h4>
-        <p>Sanaviya Vav - Tharad District, Gujarat</p>
-      </div>
+  <!-- Contact Section (Fixed with centered social icons) -->
+  <section id="contact"><h2 class="section-title fade-up">Let's Connect</h2>
+    <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; margin-bottom:2rem;">
+      <div class="glass-card" style="text-align:center; min-width:180px;"><i class="fas fa-phone fa-2x" style="color:#2dd4bf;"></i><h4>Call</h4><a href="tel:7046854698" style="color:#2dd4bf; text-decoration:none;">7046854698</a></div>
+      <div class="glass-card" style="text-align:center; min-width:180px;"><i class="fab fa-whatsapp fa-2x" style="color:#2dd4bf;"></i><h4>WhatsApp</h4><a href="https://wa.me/917046854698" target="_blank" style="color:#2dd4bf;">Chat Now</a></div>
+      <div class="glass-card" style="text-align:center; min-width:180px;"><i class="fas fa-envelope fa-2x" style="color:#2dd4bf;"></i><h4>Email</h4><a href="mailto:mpsuthar099@gmail.com" style="color:#2dd4bf;">mpsuthar099@gmail.com</a></div>
     </div>
-    <div class="message-form-section fade-up">
-      <h3 style="font-size:1.8rem; margin-bottom:1.5rem;"><i class="fas fa-paper-plane" style="color:#2dd4bf;"></i> Send a Message</h3>
+    <div class="message-form-section glass-card"><h3><i class="fas fa-paper-plane"></i> Send a Message</h3>
       <form id="contactForm">
-        <div class="form-group"><input type="text" id="msgName" placeholder="Your full name *" required></div>
-        <div class="form-group"><input type="email" id="msgEmail" placeholder="Email address *" required></div>
-        <div class="form-group"><textarea id="msgContent" placeholder="Write your message... *" required></textarea></div>
-        <button type="submit" class="send-btn" id="sendBtn"><i class="fas fa-envelope-open-text"></i> Send Message</button>
-        <p id="formFeedback" style="margin-top:12px; font-size:0.85rem; text-align:center;"></p>
+        <div class="form-group"><input type="text" id="msgName" placeholder=" " required><label>Full Name</label></div>
+        <div class="form-group"><input type="email" id="msgEmail" placeholder=" " required><label>Email Address</label></div>
+        <div class="form-group"><textarea id="msgContent" placeholder=" " rows="4" required></textarea><label>Your Message</label></div>
+ <button type="submit" class="btn btn-primary" id="sendBtn" style="width:100%;"><i class="fas fa-envelope-open-text"></i> Send Message</button>
+        <p id="formFeedback" style="margin-top:12px;"></p>
       </form>
     </div>
+    <!-- Social Icons - Centered as requested -->
     <div class="social-icons fade-up">
       <a href="https://www.instagram.com/m_gajjar_09?igsh=MW1tMzc2dHZqeWQxbw==" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://wa.me/917046854698" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
   </section>
 
-  <footer>
-    <p>© 2026 MP Suthar | Portfolio Web.</p>
-    <p><span class="design-credit"><i class="fas fa-code"></i> Design by </span><a href="https://www.prodeveloping.online" target="_blank">ProDeveloping.online</a></p>
-  </footer>
+  <footer><p>© 2026 MP Suthar | Futuristic Portfolio</p><p class="design-credit"><i class="fas fa-gem"></i>Design by <a href="https://www.prodeveloping.online" target="_blank" style="color:#FFD966; text-decoration:none;">ProDeveloping.online</a></p></footer>
 </div>
 
-<!-- Three.js Background (vibrant 3D) -->
+<!-- Three.js Background -->
 <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }</script>
 <script type="module">
   import * as THREE from 'three';
   const container = document.getElementById('canvas-container');
-  const scene = new THREE.Scene(); scene.background = new THREE.Color(0x0b1120); scene.fog = new THREE.FogExp2(0x0b1120, 0.008);
-  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000); camera.position.set(0, 1.5, 11);
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(0x050b1a); scene.fog = new THREE.FogExp2(0x050b1a, 0.006);
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000); camera.position.set(0, 1.2, 12);
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }); renderer.setSize(window.innerWidth, window.innerHeight); renderer.setPixelRatio(window.devicePixelRatio);
   container.appendChild(renderer.domElement);
-  const particleCount = 2000, geometry = new THREE.BufferGeometry(), positions = new Float32Array(particleCount * 3);
-  for (let i = 0; i < particleCount; i++) { positions[i*3] = (Math.random() - 0.5) * 60; positions[i*3+1] = (Math.random() - 0.5) * 35; positions[i*3+2] = (Math.random() - 0.5) * 40 - 15; }
+  const particleCount = 2800; const geometry = new THREE.BufferGeometry(); const positions = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount; i++) { positions[i*3] = (Math.random() - 0.5) * 70; positions[i*3+1] = (Math.random() - 0.5) * 40; positions[i*3+2] = (Math.random() - 0.5) * 50 - 20; }
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0x2dd4bf, size: 0.07, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending }));
-  scene.add(particles);
-  const starGeo = new THREE.BufferGeometry(), starPos = new Float32Array(1200 * 3);
-  for (let i = 0; i < 1200; i++) { starPos[i*3] = (Math.random() - 0.5) * 80; starPos[i*3+1] = (Math.random() - 0.5) * 50; starPos[i*3+2] = (Math.random() - 0.5) * 50 - 20; }
-  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-  const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xa78bfa, size: 0.05, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending }));
+  const particlesMat = new THREE.PointsMaterial({ color: 0x2dd4bf, size: 0.08, transparent: true, blending: THREE.AdditiveBlending });
+  const particles = new THREE.Points(geometry, particlesMat); scene.add(particles);
+  const starGeo = new THREE.BufferGeometry(); const starPos = new Float32Array(1500 * 3);
+  for (let i = 0; i < 1500; i++) { starPos[i*3] = (Math.random() - 0.5) * 100; starPos[i*3+1] = (Math.random() - 0.5) * 60; starPos[i*3+2] = (Math.random() - 0.5) * 70 - 30; }
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3)); const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xa78bfa, size: 0.06, transparent: true, blending: THREE.AdditiveBlending }));
   scene.add(stars);
-  const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.2, 0.08, 200, 32, 3, 4), new THREE.MeshStandardMaterial({ color: 0x2dd4bf, emissive: 0x0f766e, emissiveIntensity: 0.7 }));
-  const knot2 = new THREE.Mesh(new THREE.TorusKnotGeometry(1.7, 0.06, 180, 24, 2, 3), new THREE.MeshStandardMaterial({ color: 0xa855f7, emissive: 0x6b21a8, emissiveIntensity: 0.5 }));
+  const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.3, 0.1, 200, 32, 3, 4), new THREE.MeshStandardMaterial({ color: 0x2dd4bf, emissive: 0x0f766e, emissiveIntensity: 0.8 }));
+  const knot2 = new THREE.Mesh(new THREE.TorusKnotGeometry(1.8, 0.08, 180, 24, 2, 3), new THREE.MeshStandardMaterial({ color: 0xa855f7, emissive: 0x6b21a8, emissiveIntensity: 0.6 }));
   scene.add(knot); scene.add(knot2);
+  const sphereGroup = []; for(let i=0;i<12;i++){ const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.12,16,16), new THREE.MeshStandardMaterial({ color: 0x2dd4bf, emissive: 0x2dd4bf, emissiveIntensity: 0.5 })); scene.add(sphere); sphereGroup.push(sphere); }
   const ambientLight = new THREE.AmbientLight(0x1a2745); scene.add(ambientLight);
-  const light1 = new THREE.PointLight(0x2dd4bf, 1.2); light1.position.set(2, 3, 4); scene.add(light1);
-  const light2 = new THREE.PointLight(0xa78bfa, 0.9); light2.position.set(-2, 1.5, 5); scene.add(light2);
+  const light1 = new THREE.PointLight(0x2dd4bf, 1.2); light1.position.set(3,4,5); scene.add(light1);
+  const light2 = new THREE.PointLight(0xa78bfa, 1); light2.position.set(-3,2,6); scene.add(light2);
+  let mouseX = 0, mouseY = 0; window.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth) * 2 - 1; mouseY = (e.clientY / window.innerHeight) * 2 - 1; });
   let time = 0;
-  function animate() { requestAnimationFrame(animate); time += 0.008; particles.rotation.y = time * 0.08; particles.rotation.x = Math.sin(time * 0.15) * 0.1; stars.rotation.y = time * 0.05; stars.rotation.z = time * 0.03; knot.rotation.x = time * 0.4; knot.rotation.y = time * 0.6; knot2.rotation.x = time * 0.3; knot2.rotation.z = time * 0.5; camera.position.x += (0 - camera.position.x) * 0.02; camera.lookAt(0, 0, 0); renderer.render(scene, camera); }
-  animate();
+  function animate() { requestAnimationFrame(animate); time += 0.01; particles.rotation.y = time * 0.05; particles.rotation.x = Math.sin(time * 0.2) * 0.1; stars.rotation.y = time * 0.03; knot.rotation.x = time * 0.5 + mouseY * 0.5; knot.rotation.y = time * 0.7 + mouseX * 0.5; knot2.rotation.x = time * 0.4; knot2.rotation.z = time * 0.3; sphereGroup.forEach((s,idx)=>{ s.position.x = Math.sin(time + idx)*2.2; s.position.z = Math.cos(time*0.8+idx)*2; s.position.y = Math.sin(time*1.2+idx)*1.5; }); camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.03; camera.lookAt(0,0,0); renderer.render(scene, camera); } animate();
   window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 </script>
 
 <script>
-  // Initialize EmailJS with your credentials
-  emailjs.init("GeF1d5h0XT9s7JdRd");   // Your public key
-  
-  // fade-up animation
+  emailjs.init("GeF1d5h0XT9s7JdRd");
+  // Typing effect
+  const roles = ["Web Developer", "UI/UX Architect", "CEO & Founder", "3D Creative Dev"];
+  let idx = 0, charIdx = 0, isDeleting = false;
+  function typeEffect() { const el = document.getElementById("typingEffect"); if(!el) return; const current = roles[idx]; if(isDeleting) el.innerText = current.substring(0, charIdx--); else el.innerText = current.substring(0, charIdx++); if(!isDeleting && charIdx === current.length+2) isDeleting = true; if(isDeleting && charIdx === 0) { isDeleting = false; idx = (idx+1)%roles.length; } setTimeout(typeEffect, 100); } typeEffect();
+
+  // Scroll reveal + progress bars + stats counter
   const faders = document.querySelectorAll('.fade-up');
-  const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
-  faders.forEach(el => obs.observe(el));
+  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.1 });
+  faders.forEach(el => observer.observe(el));
 
-  // mobile menu
+  const progressBars = document.querySelectorAll('.progress-fill');
+  const statsNumbers = document.querySelectorAll('.stat-number');
+  let animatedStats = false;
+  const statsObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting && !animatedStats) { animatedStats = true; statsNumbers.forEach(stat => { const target = parseInt(stat.getAttribute('data-target')); let current = 0; const update = setInterval(() => { current += Math.ceil(target/50); if(current >= target) { stat.innerText = target; clearInterval(update); } else stat.innerText = current; }, 30); }); progressBars.forEach(bar => { const width = bar.getAttribute('data-width'); bar.style.width = width + '%'; }); } }); }, { threshold: 0.5 });
+  const statsSection = document.querySelector('#stats'); if(statsSection) statsObserver.observe(statsSection);
+
+  // Contact form
+  const form = document.getElementById('contactForm'), sendBtn = document.getElementById('sendBtn'), feedback = document.getElementById('formFeedback');
+  form.addEventListener('submit', async (e) => { e.preventDefault(); const name = document.getElementById('msgName').value.trim(), email = document.getElementById('msgEmail').value.trim(), message = document.getElementById('msgContent').value.trim(); if(!name || !email || !message) { feedback.innerHTML = '⚠️ Fill all fields'; feedback.style.color = '#ffb86b'; return; } sendBtn.disabled = true; sendBtn.innerHTML = '<span class="spinner"></span> Sending...'; try { await emailjs.send("service_7ssaifh", "template_7lsojn8", { from_name: name, from_email: email, message: message, reply_to: email }); feedback.innerHTML = '✅ Message sent! I will reply soon.'; feedback.style.color = '#2dd4bf'; form.reset(); } catch(err) { feedback.innerHTML = '❌ Failed, try later.'; feedback.style.color = '#ff6b6b'; } finally { sendBtn.disabled = false; sendBtn.innerHTML = '<i class="fas fa-envelope-open-text"></i> Send Message'; setTimeout(() => feedback.innerHTML = '', 4000); } });
+
+  // Mobile menu
   const mobileBtn = document.getElementById('mobile-menu'), navUl = document.getElementById('nav-links');
-  mobileBtn.addEventListener('click', () => navUl.classList.toggle('active'));
+  mobileBtn?.addEventListener('click', () => navUl.classList.toggle('active'));
   document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navUl.classList.remove('active')));
-
-  // smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const target = document.querySelector(this.getAttribute('href')); if(target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' }); } }); });
-
-  // project cards click
-  document.getElementById('premiumCard')?.addEventListener('click', (e) => { e.stopPropagation(); window.open(document.getElementById('premiumCard').getAttribute('data-link'), '_blank'); });
-  document.getElementById('customCard')?.addEventListener('click', (e) => { e.stopPropagation(); window.open(document.getElementById('customCard').getAttribute('data-link'), '_blank'); });
-
-  // EmailJS form submission with loading animation
-  const form = document.getElementById('contactForm');
-  const sendBtn = document.getElementById('sendBtn');
-  const feedback = document.getElementById('formFeedback');
-
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('msgName')?.value.trim();
-      const email = document.getElementById('msgEmail')?.value.trim();
-      const message = document.getElementById('msgContent')?.value.trim();
-      
-      if (!name || !email || !message) {
-        feedback.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please fill all fields.';
-        feedback.style.color = '#ffb86b';
-        return;
-      }
-      if (!email.includes('@') || !email.includes('.')) {
-        feedback.innerHTML = '<i class="fas fa-envelope"></i> Enter a valid email address.';
-        feedback.style.color = '#ffb86b';
-        return;
-      }
-
-      // Show loading animation on button
-      const originalContent = sendBtn.innerHTML;
-      sendBtn.disabled = true;
-      sendBtn.innerHTML = '<span class="spinner"></span> Sending...';
-      feedback.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending message...';
-      feedback.style.color = '#2dd4bf';
-
-      try {
-        const templateParams = {
-          from_name: name,
-          from_email: email,
-          message: message,
-          to_name: 'MP Suthar',
-          reply_to: email
-        };
-        await emailjs.send("service_7ssaifh", "template_7lsojn8", templateParams);
-        // Success
-        feedback.innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully! I will reply soon.';
-        feedback.style.color = '#2dd4bf';
-        form.reset();
-      } catch (error) {
-        console.error('EmailJS error:', error);
-        feedback.innerHTML = '<i class="fas fa-times-circle"></i> Failed to send. Please try again later.';
-        feedback.style.color = '#ff6b6b';
-      } finally {
-        sendBtn.disabled = false;
-        sendBtn.innerHTML = originalContent;
-        setTimeout(() => {
-          if (feedback.innerHTML.includes('successfully')) feedback.innerHTML = '';
-        }, 5000);
-      }
-    });
-  }
 </script>
 </body>
 </html>

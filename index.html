@@ -251,36 +251,33 @@
       border-color: #a78bfa;
     }
 
-    /* Hero image centering */
-   .hero-image img{
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  object-position: top center;
-  border-radius: 50%;
-  border: 4px solid #2dd4bf;
-  box-shadow: 0 20px 40px rgba(45,212,191,0.5);
-  transition: 0.4s ease;
-}
+    /* Special Download CV button - standout gradient */
+    #downloadCVBtn {
+      background: linear-gradient(95deg, #a855f7, #2dd4bf);
+      border: none;
+      color: white;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+    }
+    #downloadCVBtn:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 22px rgba(45, 212, 191, 0.8);
+      background: linear-gradient(95deg, #c084fc, #2dd4bf);
+    }
 
-.hero-image img:hover{
-  transform: scale(1.05);
-  box-shadow: 0 30px 60px rgba(45,212,191,0.7);
-}
     .hero-image img {
-      width: 320px;
-      height: 320px;
+      width: 300px;
+      height: 300px;
       object-fit: cover;
-      border-radius: 40% 60% 35% 65% / 70% 40% 60% 30%;
-      border: 3px solid #2dd4bf;
-      box-shadow: 0 20px 35px rgba(0, 255, 200, 0.3);
-      transition: transform 0.5s ease, box-shadow 0.4s;
-      cursor: pointer;
+      object-position: top center;
+      border-radius: 50%;
+      border: 4px solid #2dd4bf;
+      box-shadow: 0 20px 40px rgba(45,212,191,0.5);
+      transition: 0.4s ease;
     }
 
     .hero-image img:hover {
-      transform: rotateY(10deg) rotateX(5deg) scale(1.03);
-      box-shadow: 0 30px 45px rgba(45, 212, 191, 0.5);
+      transform: scale(1.05);
+      box-shadow: 0 30px 60px rgba(45,212,191,0.7);
     }
 
     /* Skills progress */
@@ -358,11 +355,13 @@
       color: #2dd4bf;
     }
 
-    /* Projects (New: Sarvtra Electrical) */
+    /* Projects grid - now only two cards, centered nicely */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .project-card {
@@ -397,16 +396,6 @@
       text-decoration: none;
       font-weight: 600;
       border-bottom: 1px solid #2dd4bf;
-    }
-
-    /* Future Vision */
-    .future-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
-    .future-card {
-      text-align: center;
     }
 
     /* Contact Form */
@@ -460,7 +449,7 @@
       background: rgba(5, 15, 30, 0.7);
     }
     
-    /* Social Icons - Centered */
+    /* Social Icons */
     .social-icons {
       text-align: center;
       margin-top: 2rem;
@@ -514,6 +503,7 @@
       .hero-image img { width: 240px; height: 240px; }
       .hero { flex-direction: column-reverse; text-align: center; }
       .hero-buttons { justify-content: center; }
+      .projects-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -525,7 +515,7 @@
       <div class="logo" onclick="window.open('https://www.prodeveloping.online', '_blank')">MP Suthar <span class="logo-badge"><i class="fas fa-crown"></i> Pro</span></div>
       <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#services">Services</a></li><li><a href="#future">Future</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li>
+        <li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#services">Services</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -541,6 +531,8 @@
         <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Explore Work</a>
         <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Hire Me</a>
         <a href="https://www.prodeveloping.online" target="_blank" class="btn btn-outline"><i class="fas fa-globe"></i> ProDeveloping.online</a>
+        <!-- DOWNLOAD CV BUTTON with enhanced gradient -->
+        <button id="downloadCVBtn" class="btn"><i class="fas fa-download"></i> Download CV</button>
       </div>
     </div>
     <div class="hero-image fade-up">
@@ -577,29 +569,31 @@
   <!-- Stats -->
   <section id="stats"><h2 class="section-title fade-up">Milestones</h2><div class="stats-grid"><div class="stat-item"><div class="stat-number" data-target="28">0</div><p>Projects Done</p></div><div class="stat-item"><div class="stat-number" data-target="18">0</div><p>Happy Clients</p></div><div class="stat-item"><div class="stat-number" data-target="3">0</div><p>Years Exp</p></div><div class="stat-item"><div class="stat-number" data-target="45">0</div><p>Tools Used</p></div></div></section>
 
-  <!-- Projects Section (Sarvtra Electrical) -->
-  <section id="projects"><h2 class="section-title fade-up">Me Maneger</h2>
+  <!-- Projects Section - Only TWO projects: Premium Web Work + Custom Tools Work -->
+  <section id="projects"><h2 class="section-title fade-up">⚡ My Projects</h2>
     <div class="projects-grid">
-      <div class="project-card" onclick="window.open('https://www.sarvtraelectricalpvtltd.in', '_blank')">
-        <div class="project-img"><i class="fas fa-bolt fa-4x"></i></div>
+      <!-- Premium Web Work -->
+      <div class="project-card" onclick="window.open('https://prodeveloping.online/proweb.html', '_blank')">
+        <div class="project-img"><i class="fas fa-globe fa-4x" style="color:#2dd4bf;"></i></div>
         <div class="project-info">
-          <h3>Sarvtra Electrical PVT LTD</h3>
-          <p>Complete electrical solutions provider – modern website with service catalog, client portal, and industrial design.</p>
-          <a href="https://www.sarvtraelectricalpvtltd.in" target="_blank" class="project-link">www.sarvtraelectricalpvtltd.in <i class="fas fa-external-link-alt"></i></a>
+          <h3>✨ Premium Web Work</h3>
+          <p>High-end web development, interactive dashboards, and premium UI/UX experiences. Built with modern tech stacks including React, Three.js, and advanced animations.</p>
+          <a href="https://prodeveloping.online/proweb.html" target="_blank" class="project-link">Explore Pro Web <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-      <div class="project-card" onclick="window.open('https://www.sarvtraelectricalpvtltd.in', '_blank')">
-        <div class="project-img"><i class="fas fa-solar-panel fa-4x"></i></div>
+      <!-- Custom Tools Work -->
+      <div class="project-card" onclick="window.open('https://prodeveloping.online/cwork.html', '_blank')">
+        <div class="project-img"><i class="fas fa-tools fa-4x" style="color:#a855f7;"></i></div>
         <div class="project-info">
-          <h3>Sarvtra Solar Solutions</h3>
-          <p>Renewable energy division – solar panel installations, energy audit, and green tech consulting website.</p>
-          <a href="https://www.sarvtraelectricalpvtltd.in" target="_blank" class="project-link">Visit Solar Division <i class="fas fa-external-link-alt"></i></a>
+          <h3>🛠️ Custom Tools Work</h3>
+          <p>Powerful custom JavaScript utilities, automation tools, and advanced interactive web components. Tailor-made solutions for complex business needs.</p>
+          <a href="https://prodeveloping.online/cwork.html" target="_blank" class="project-link">Discover Custom Tools <i class="fas fa-external-link-alt"></i></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section (Fixed with centered social icons) -->
+  <!-- Contact Section -->
   <section id="contact"><h2 class="section-title fade-up">Let's Connect</h2>
     <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; margin-bottom:2rem;">
       <div class="glass-card" style="text-align:center; min-width:180px;"><i class="fas fa-phone fa-2x" style="color:#2dd4bf;"></i><h4>Call</h4><a href="tel:7046854698" style="color:#2dd4bf; text-decoration:none;">7046854698</a></div>
@@ -609,13 +603,13 @@
     <div class="message-form-section glass-card"><h3><i class="fas fa-paper-plane"></i> Send a Message</h3>
       <form id="contactForm">
         <div class="form-group"><input type="text" id="msgName" placeholder=" " required><label>Full Name</label></div>
-        <div class="form-group"><input type="email" id="msgEmail" placeholder=" " required><label>Email Address</label></div>
+     <div class="form-group"><input type="email" id="msgEmail" placeholder=" " required><label>Email Address</label></div>
         <div class="form-group"><textarea id="msgContent" placeholder=" " rows="4" required></textarea><label>Your Message</label></div>
- <button type="submit" class="btn btn-primary" id="sendBtn" style="width:100%;"><i class="fas fa-envelope-open-text"></i> Send Message</button>
+        <button type="submit" class="btn btn-primary" id="sendBtn" style="width:100%;"><i class="fas fa-envelope-open-text"></i> Send Message</button>
         <p id="formFeedback" style="margin-top:12px;"></p>
       </form>
     </div>
-    <!-- Social Icons - Centered as requested -->
+    <!-- Social Icons -->
     <div class="social-icons fade-up">
       <a href="https://www.instagram.com/m_gajjar_09?igsh=MW1tMzc2dHZqeWQxbw==" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://wa.me/917046854698" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -625,7 +619,7 @@
   <footer><p>© 2026 MP Suthar | Futuristic Portfolio</p><p class="design-credit"><i class="fas fa-gem"></i>Design by <a href="https://www.prodeveloping.online" target="_blank" style="color:#FFD966; text-decoration:none;">ProDeveloping.online</a></p></footer>
 </div>
 
-<!-- Three.js Background -->
+<!-- Three.js Background (immersive scene) -->
 <script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }</script>
 <script type="module">
   import * as THREE from 'three';
@@ -683,6 +677,58 @@
   mobileBtn?.addEventListener('click', () => navUl.classList.toggle('active'));
   document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navUl.classList.remove('active')));
   document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const target = document.querySelector(this.getAttribute('href')); if(target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' }); } }); });
+
+  // Download CV functionality
+  const downloadBtn = document.getElementById('downloadCVBtn');
+  if(downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      const cvContent = `MP Suthar - Professional CV
+
+Contact:
+• Phone: 7046854698
+• Email: mpsuthar099@gmail.com
+• Website: prodeveloping.online
+• Location: Sanaviya Vav, Tharad, Gujarat
+
+PROFILE SUMMARY
+Innovative Web Developer & Founder of ProDeveloping with 2+ years of experience. Specialized in modern frontend, 3D web experiences, PHP backend, and futuristic UI/UX. Proven track record of delivering high-performance digital solutions.
+
+CORE SKILLS
+• HTML5, CSS3, JavaScript (ES6+)
+• PHP & MySQL
+• Three.js / 3D Web Integration
+• Responsive & Glassmorphism Design
+• Custom Tool Development
+
+WORK EXPERIENCE
+CEO & Lead Developer | ProDeveloping (2023 - Present)
+- Built 25+ live projects for global clients.
+- Created Sarvtra Electrical PVT LTD full corporate website.
+- Developed premium web tools and interactive dashboards.
+
+EDUCATION & CERTIFICATIONS
+Bachelor of Computer Applications (pursuing) | Gujarat University
+Certified in Full Stack Web Development
+
+PROJECT HIGHLIGHTS
+• Premium Web Work Suite – High-end modern web interfaces.
+• Custom JavaScript Utilities – Tailored automation tools.
+
+LANGUAGES: English, Hindi, Gujarati
+
+References available upon request.
+`;
+      const blob = new Blob([cvContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'MP_Suthar_CV.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
 </script>
 </body>
 </html>

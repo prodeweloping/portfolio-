@@ -251,12 +251,13 @@
       border-color: #a78bfa;
     }
 
-    /* Special Download CV button - standout gradient */
+    /* Download CV button styling - now as anchor */
     #downloadCVBtn {
       background: linear-gradient(95deg, #a855f7, #2dd4bf);
       border: none;
       color: white;
       box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+      cursor: pointer;
     }
     #downloadCVBtn:hover {
       transform: translateY(-6px);
@@ -280,7 +281,6 @@
       box-shadow: 0 30px 60px rgba(45,212,191,0.7);
     }
 
-    /* Skills progress */
     .skills-container {
       display: flex;
       flex-direction: column;
@@ -314,7 +314,6 @@
       transition: width 1.2s ease;
     }
 
-    /* Services grid */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -332,7 +331,6 @@
       box-shadow: 0 0 25px rgba(45, 212, 191, 0.4);
     }
 
-    /* Stats counter */
     .stats-grid {
       display: flex;
       justify-content: space-around;
@@ -355,7 +353,6 @@
       color: #2dd4bf;
     }
 
-    /* Projects grid - now only two cards, centered nicely */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -398,7 +395,6 @@
       border-bottom: 1px solid #2dd4bf;
     }
 
-    /* Contact Form */
     .form-group {
       position: relative;
       margin-bottom: 2rem;
@@ -441,38 +437,183 @@
       color: #2dd4bf;
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 2px solid transparent;
-      border-image: linear-gradient(90deg, #2dd4bf, #a855f7) 1;
-      background: rgba(5, 15, 30, 0.7);
+    /* MODERN TOAST MESSAGES */
+    .toast-notification {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: rgba(10, 20, 35, 0.95);
+      backdrop-filter: blur(12px);
+      border-left: 5px solid #2dd4bf;
+      border-radius: 16px;
+      padding: 1rem 1.8rem;
+      color: white;
+      font-weight: 500;
+      z-index: 2000;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+      font-family: monospace;
     }
-    
-    /* Social Icons */
-    .social-icons {
-      text-align: center;
+    .toast-notification.show {
+      transform: translateX(0);
+    }
+    .toast-notification.error {
+      border-left-color: #ff6b6b;
+    }
+    .toast-notification.success {
+      border-left-color: #2dd4bf;
+    }
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* NEW GLASS FOOTER - FULL LEFT ALIGN */
+    .glass-footer {
+      background: rgba(8, 18, 35, 0.85);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(45, 212, 191, 0.4);
       margin-top: 2rem;
+      padding: 3rem 2rem 1.5rem;
     }
-    .social-icons a {
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 3rem;
+      text-align: left;
+    }
+    .footer-brand {
+      flex: 1;
+      min-width: 240px;
+      text-align: left;
+    }
+    .footer-brand h3 {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #2dd4bf, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.8rem;
+      text-align: left;
+    }
+    .footer-brand p {
+      color: #94a3b8;
+      text-align: left;
+      line-height: 1.5;
+    }
+    .footer-quick-links {
+      flex: 1;
+      min-width: 160px;
+      text-align: left;
+    }
+    .footer-quick-links h4, .footer-contact h4 {
+      color: #2dd4bf;
+      margin-bottom: 1.2rem;
+      font-size: 1.2rem;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-quick-links ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+    .footer-quick-links ul li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: 0.2s;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-quick-links ul li a:hover {
+      color: #2dd4bf;
+      padding-left: 5px;
+    }
+    .footer-contact {
+      flex: 1;
+      min-width: 220px;
+      text-align: left;
+    }
+    .footer-contact p {
+      margin: 0.7rem 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #cbd5e1;
+      text-align: left;
+      justify-content: flex-start;
+    }
+    .footer-contact i {
+      color: #2dd4bf;
+      width: 24px;
+      font-size: 1.1rem;
+    }
+    .footer-contact a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .footer-contact a:hover {
+      color: #2dd4bf;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(45,212,191,0.2);
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    /* Social Icons - Left Aligned */
+    .social-icons-left {
+      display: flex;
+      justify-content: flex-start;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .social-icons-left a {
       background: rgba(45, 212, 191, 0.15);
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      margin: 0 10px;
       transition: 0.3s;
       color: white;
       text-decoration: none;
+      font-size: 1.2rem;
+      border: 1px solid rgba(45,212,191,0.3);
     }
-    .social-icons a:hover {
+    .social-icons-left a:hover {
       background: #2dd4bf;
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       color: #0a0f2a;
+      border-color: #2dd4bf;
     }
-
+    /* For contact section specific social icons left align */
+    .contact-social-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 1rem;
+      width: 100%;
+    }
     .fade-up {
       opacity: 0;
       transform: translateY(40px);
@@ -504,6 +645,12 @@
       .hero { flex-direction: column-reverse; text-align: center; }
       .hero-buttons { justify-content: center; }
       .projects-grid { grid-template-columns: 1fr; }
+      .footer-container { flex-direction: column; align-items: flex-start; text-align: left; }
+      .footer-brand, .footer-quick-links, .footer-contact { text-align: left; width: 100%; }
+      .footer-quick-links ul { align-items: flex-start; }
+      .footer-contact p { justify-content: flex-start; }
+      .social-icons-left { justify-content: flex-start; }
+      .contact-social-wrapper { justify-content: flex-start; }
     }
   </style>
 </head>
@@ -520,7 +667,6 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content fade-up">
       <div class="greeting"><i class="fas fa-code"></i> Hi, I'm</div>
@@ -531,8 +677,10 @@
         <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Explore Work</a>
         <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Hire Me</a>
         <a href="https://www.prodeveloping.online" target="_blank" class="btn btn-outline"><i class="fas fa-globe"></i> ProDeveloping.online</a>
-        <!-- DOWNLOAD CV BUTTON with enhanced gradient -->
-        <button id="downloadCVBtn" class="btn"><i class="fas fa-download"></i> Download CV</button>
+        <!-- REPLACED BUTTON: direct PDF download link (no JS generation) -->
+        <a href="Mahipat_Suthar_Resume.pdf" download class="btn" id="downloadCVBtn">
+          <i class="fas fa-download"></i> Download CV
+        </a>
       </div>
     </div>
     <div class="hero-image fade-up">
@@ -540,13 +688,11 @@
     </div>
   </section>
 
-  <!-- About -->
   <section id="about"><h2 class="section-title fade-up">About Me</h2>
     <div class="glass-card fade-up"><p style="font-size:1.2rem;">I am <strong>MP Suthar</strong>, web developer and <strong>CEO & Founder of ProDeveloping</strong>. I build modern static/dynamic websites with <strong>HTML, CSS, JavaScript, PHP</strong>. 2+ years experience delivering futuristic digital experiences.</p>
     <div style="margin-top:1.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;"><span><i class="fas fa-map-marker-alt"></i> Sanaviya Vav - Tharad, Gujarat</span><span><i class="fas fa-phone"></i> 7046854698</span><span><i class="fas fa-rocket"></i> prodeveloping.online</span></div></div>
   </section>
 
-  <!-- Skills -->
   <section id="skills"><h2 class="section-title fade-up">Tech Arsenal</h2>
     <div class="skills-container glass-card">
       <div class="skill-progress"><div class="skill-info"><span><i class="fab fa-html5"></i> HTML5</span><span>95%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="95"></div></div></div>
@@ -556,44 +702,31 @@
     </div>
   </section>
 
-  <!-- Services -->
   <section id="services"><h2 class="section-title fade-up">Premium Services</h2>
     <div class="services-grid">
       <div class="glass-card service-card"><i class="fas fa-code" style="font-size: 3rem; color:#2dd4bf;"></i><h3>Web Development</h3><p>Modern responsive websites & web apps</p></div>
-      <div class="glass-card service-card"><i class="fas fa-paint-brush" style="font-size: 3rem; color:#a855f7;"></i><h3>UI/UX Design</h3><p>Glassmorphism, futuristic interfaces</p></div>
+ <div class="glass-card service-card"><i class="fas fa-paint-brush" style="font-size: 3rem; color:#a855f7;"></i><h3>UI/UX Design</h3><p>Glassmorphism, futuristic interfaces</p></div>
       <div class="glass-card service-card"><i class="fas fa-chart-line" style="font-size: 3rem; color:#2dd4bf;"></i><h3>SEO Optimization</h3><p>Lightning speed & performance</p></div>
       <div class="glass-card service-card"><i class="fas fa-cogs" style="font-size: 3rem; color:#a855f7;"></i><h3>Custom Tools</h3><p>Interactive 3D & advanced JS tools</p></div>
     </div>
   </section>
 
-  <!-- Stats -->
   <section id="stats"><h2 class="section-title fade-up">Milestones</h2><div class="stats-grid"><div class="stat-item"><div class="stat-number" data-target="28">0</div><p>Projects Done</p></div><div class="stat-item"><div class="stat-number" data-target="18">0</div><p>Happy Clients</p></div><div class="stat-item"><div class="stat-number" data-target="3">0</div><p>Years Exp</p></div><div class="stat-item"><div class="stat-number" data-target="45">0</div><p>Tools Used</p></div></div></section>
 
-  <!-- Projects Section - Only TWO projects: Premium Web Work + Custom Tools Work -->
   <section id="projects"><h2 class="section-title fade-up">⚡ My Projects</h2>
     <div class="projects-grid">
-      <!-- Premium Web Work -->
       <div class="project-card" onclick="window.open('https://prodeveloping.online/proweb.html', '_blank')">
         <div class="project-img"><i class="fas fa-globe fa-4x" style="color:#2dd4bf;"></i></div>
-        <div class="project-info">
-          <h3>✨ Premium Web Work</h3>
-          <p>High-end web development, interactive dashboards, and premium UI/UX experiences. Built with modern tech stacks including React, Three.js, and advanced animations.</p>
-          <a href="https://prodeveloping.online/proweb.html" target="_blank" class="project-link">Explore Pro Web <i class="fas fa-arrow-right"></i></a>
-        </div>
+        <div class="project-info"><h3>✨ Premium Web Work</h3><p>High-end web development, interactive dashboards, and premium UI/UX experiences. Built with modern tech stacks including React, Three.js, and advanced animations.</p><a href="https://prodeveloping.online/proweb.html" target="_blank" class="project-link">Explore Pro Web <i class="fas fa-arrow-right"></i></a></div>
       </div>
-      <!-- Custom Tools Work -->
       <div class="project-card" onclick="window.open('https://prodeveloping.online/cwork.html', '_blank')">
         <div class="project-img"><i class="fas fa-tools fa-4x" style="color:#a855f7;"></i></div>
-        <div class="project-info">
-          <h3>🛠️ Custom Tools Work</h3>
-          <p>Powerful custom JavaScript utilities, automation tools, and advanced interactive web components. Tailor-made solutions for complex business needs.</p>
-          <a href="https://prodeveloping.online/cwork.html" target="_blank" class="project-link">Discover Custom Tools <i class="fas fa-external-link-alt"></i></a>
-        </div>
+        <div class="project-info"><h3>🛠️ Custom Tools Work</h3><p>Powerful custom JavaScript utilities, automation tools, and advanced interactive web components. Tailor-made solutions for complex business needs.</p><a href="https://prodeveloping.online/cwork.html" target="_blank" class="project-link">Discover Custom Tools <i class="fas fa-external-link-alt"></i></a></div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- CONTACT SECTION with left aligned social icons -->
   <section id="contact"><h2 class="section-title fade-up">Let's Connect</h2>
     <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; margin-bottom:2rem;">
       <div class="glass-card" style="text-align:center; min-width:180px;"><i class="fas fa-phone fa-2x" style="color:#2dd4bf;"></i><h4>Call</h4><a href="tel:7046854698" style="color:#2dd4bf; text-decoration:none;">7046854698</a></div>
@@ -603,20 +736,47 @@
     <div class="message-form-section glass-card"><h3><i class="fas fa-paper-plane"></i> Send a Message</h3>
       <form id="contactForm">
         <div class="form-group"><input type="text" id="msgName" placeholder=" " required><label>Full Name</label></div>
-     <div class="form-group"><input type="email" id="msgEmail" placeholder=" " required><label>Email Address</label></div>
+        <div class="form-group"><input type="email" id="msgEmail" placeholder=" " required><label>Email Address</label></div>
         <div class="form-group"><textarea id="msgContent" placeholder=" " rows="4" required></textarea><label>Your Message</label></div>
         <button type="submit" class="btn btn-primary" id="sendBtn" style="width:100%;"><i class="fas fa-envelope-open-text"></i> Send Message</button>
-        <p id="formFeedback" style="margin-top:12px;"></p>
       </form>
-    </div>
-    <!-- Social Icons -->
-    <div class="social-icons fade-up">
-      <a href="https://www.instagram.com/m_gajjar_09?igsh=MW1tMzc2dHZqeWQxbw==" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://wa.me/917046854698" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
   </section>
 
-  <footer><p>© 2026 MP Suthar | Futuristic Portfolio</p><p class="design-credit"><i class="fas fa-gem"></i>Design by <a href="https://www.prodeveloping.online" target="_blank" style="color:#FFD966; text-decoration:none;">ProDeveloping.online</a></p></footer>
+  <!-- NEW GLASS FOOTER with Quick Links and FULL LEFT ALIGNED text & icons -->
+  <footer class="glass-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3><i class="fas fa-code-branch"></i> MP Suthar</h3>
+        <p>CEO & Founder @ ProDeveloping<br>Innovative web solutions with futuristic design.</p>
+        <div class="social-icons-left">
+          <a href="https://www.instagram.com/m_gajjar_09?igsh=MW1tMzc2dHZqeWQxbw==" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/917046854698" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-quick-links">
+        <h4><i class="fas fa-link"></i> Quick Links</h4>
+        <ul>
+          <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+          <li><a href="#skills"><i class="fas fa-cogs"></i> Skills</a></li>
+          <li><a href="#services"><i class="fas fa-star"></i> Services</a></li>
+          <li><a href="#projects"><i class="fas fa-folder-open"></i> Projects</a></li>
+          <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4><i class="fas fa-address-card"></i> Get in Touch</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Sanaviya Vav, Tharad, Gujarat</p>
+        <p><i class="fas fa-phone"></i> <a href="tel:7046854698">+91 7046854698</a></p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:mpsuthar099@gmail.com">mpsuthar099@gmail.com</a></p>
+        <p><i class="fas fa-globe"></i> <a href="https://www.prodeveloping.online" target="_blank">prodeveloping.online</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><i class="far fa-copyright"></i> 2026 MP Suthar | Futuristic Portfolio | Powered by <i class="fas fa-gem"></i> ProDeveloping</p>
+    </div>
+  </footer>
 </div>
 
 <!-- Three.js Background (immersive scene) -->
@@ -652,83 +812,76 @@
 
 <script>
   emailjs.init("GeF1d5h0XT9s7JdRd");
+  
+  // Toast notifier
+  function showToast(message, isError = false) {
+    let toast = document.querySelector('.toast-notification');
+    if(!toast){
+      toast = document.createElement('div');
+      toast.className = 'toast-notification';
+      document.body.appendChild(toast);
+    }
+    toast.innerText = message;
+    toast.classList.remove('error', 'success');
+    toast.classList.add(isError ? 'error' : 'success');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+
   // Typing effect
-  const roles = ["Web Developer", "UI/UX Architect", "CEO & Founder", "3D Creative Dev"];
+  const roles = ["Web Developer", "UI/UX Designer", "CEO & Founder", ""];
   let idx = 0, charIdx = 0, isDeleting = false;
   function typeEffect() { const el = document.getElementById("typingEffect"); if(!el) return; const current = roles[idx]; if(isDeleting) el.innerText = current.substring(0, charIdx--); else el.innerText = current.substring(0, charIdx++); if(!isDeleting && charIdx === current.length+2) isDeleting = true; if(isDeleting && charIdx === 0) { isDeleting = false; idx = (idx+1)%roles.length; } setTimeout(typeEffect, 100); } typeEffect();
 
-  // Scroll reveal + progress bars + stats counter
+  // Scroll + progress bars
   const faders = document.querySelectorAll('.fade-up');
   const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.1 });
   faders.forEach(el => observer.observe(el));
-
   const progressBars = document.querySelectorAll('.progress-fill');
   const statsNumbers = document.querySelectorAll('.stat-number');
   let animatedStats = false;
   const statsObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting && !animatedStats) { animatedStats = true; statsNumbers.forEach(stat => { const target = parseInt(stat.getAttribute('data-target')); let current = 0; const update = setInterval(() => { current += Math.ceil(target/50); if(current >= target) { stat.innerText = target; clearInterval(update); } else stat.innerText = current; }, 30); }); progressBars.forEach(bar => { const width = bar.getAttribute('data-width'); bar.style.width = width + '%'; }); } }); }, { threshold: 0.5 });
   const statsSection = document.querySelector('#stats'); if(statsSection) statsObserver.observe(statsSection);
 
-  // Contact form
-  const form = document.getElementById('contactForm'), sendBtn = document.getElementById('sendBtn'), feedback = document.getElementById('formFeedback');
-  form.addEventListener('submit', async (e) => { e.preventDefault(); const name = document.getElementById('msgName').value.trim(), email = document.getElementById('msgEmail').value.trim(), message = document.getElementById('msgContent').value.trim(); if(!name || !email || !message) { feedback.innerHTML = '⚠️ Fill all fields'; feedback.style.color = '#ffb86b'; return; } sendBtn.disabled = true; sendBtn.innerHTML = '<span class="spinner"></span> Sending...'; try { await emailjs.send("service_7ssaifh", "template_7lsojn8", { from_name: name, from_email: email, message: message, reply_to: email }); feedback.innerHTML = '✅ Message sent! I will reply soon.'; feedback.style.color = '#2dd4bf'; form.reset(); } catch(err) { feedback.innerHTML = '❌ Failed, try later.'; feedback.style.color = '#ff6b6b'; } finally { sendBtn.disabled = false; sendBtn.innerHTML = '<i class="fas fa-envelope-open-text"></i> Send Message'; setTimeout(() => feedback.innerHTML = '', 4000); } });
+  // CONTACT FORM with admin + auto-reply (NO download CV JS generation anymore)
+  const form = document.getElementById('contactForm');
+  const sendBtn = document.getElementById('sendBtn');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('msgName').value.trim();
+    const email = document.getElementById('msgEmail').value.trim();
+    const message = document.getElementById('msgContent').value.trim();
+    if(!name || !email || !message) {
+      showToast("⚠️ Please fill all fields before sending.", true);
+      return;
+    }
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = '<span class="spinner"></span> Sending...';
+    try {
+      const adminParams = { from_name: name, from_email: email, message: message, reply_to: email };
+      await emailjs.send("service_7ssaifh", "template_7lsojn8", adminParams);
+      const autoReplyParams = { user_email: email, user_name: name, user_message: message, reply_message: "Thank you for reaching out! I'll get back to you within 24 hours.\n\nBest Regards,\nMP Suthar\nProDeveloping" };
+      await emailjs.send("service_7ssaifh", "template_7rwk2vt", autoReplyParams);
+      showToast("✅ Message sent! Check your inbox for confirmation email.", false);
+      form.reset();
+    } catch(err) {
+      console.error(err);
+      showToast("❌ Failed to send. Please try again later.", true);
+    } finally {
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = '<i class="fas fa-envelope-open-text"></i> Send Message';
+    }
+  });
 
-  // Mobile menu
+  // Mobile menu and smooth scroll
   const mobileBtn = document.getElementById('mobile-menu'), navUl = document.getElementById('nav-links');
   mobileBtn?.addEventListener('click', () => navUl.classList.toggle('active'));
-  document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navUl.classList.remove('active')));
+  document.querySelectorAll('.nav-links a, .footer-quick-links a').forEach(link => link.addEventListener('click', () => navUl?.classList.remove('active')));
   document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const target = document.querySelector(this.getAttribute('href')); if(target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' }); } }); });
-
-  // Download CV functionality
-  const downloadBtn = document.getElementById('downloadCVBtn');
-  if(downloadBtn) {
-    downloadBtn.addEventListener('click', () => {
-      const cvContent = `MP Suthar - Professional CV
-
-Contact:
-• Phone: 7046854698
-• Email: mpsuthar099@gmail.com
-• Website: prodeveloping.online
-• Location: Sanaviya Vav, Tharad, Gujarat
-
-PROFILE SUMMARY
-Innovative Web Developer & Founder of ProDeveloping with 2+ years of experience. Specialized in modern frontend, 3D web experiences, PHP backend, and futuristic UI/UX. Proven track record of delivering high-performance digital solutions.
-
-CORE SKILLS
-• HTML5, CSS3, JavaScript (ES6+)
-• PHP & MySQL
-• Three.js / 3D Web Integration
-• Responsive & Glassmorphism Design
-• Custom Tool Development
-
-WORK EXPERIENCE
-CEO & Lead Developer | ProDeveloping (2023 - Present)
-- Built 25+ live projects for global clients.
-- Created Sarvtra Electrical PVT LTD full corporate website.
-- Developed premium web tools and interactive dashboards.
-
-EDUCATION & CERTIFICATIONS
-Bachelor of Computer Applications (pursuing) | Gujarat University
-Certified in Full Stack Web Development
-
-PROJECT HIGHLIGHTS
-• Premium Web Work Suite – High-end modern web interfaces.
-• Custom JavaScript Utilities – Tailored automation tools.
-
-LANGUAGES: English, Hindi, Gujarati
-
-References available upon request.
-`;
-      const blob = new Blob([cvContent], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'MP_Suthar_CV.txt';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
-  }
+  
+  // NOTE: No more download CV JavaScript logic. 
+  // The Download CV button is now a direct anchor link to Mahipat_Suthar_Resume.pdf with download attribute.
+  // Ensure the file "Mahipat_Suthar_Resume.pdf" exists in the same directory as this HTML file.
 </script>
 </body>
-</html>
+  </html>
